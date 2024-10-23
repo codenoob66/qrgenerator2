@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from './assets/FinalLogo.svg';
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-800">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center text-white text-lg font-bold">
           <span>Powered by</span>

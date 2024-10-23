@@ -59,9 +59,6 @@ function App() {
         <button onClick={() => resetUrl("https://new-url.com")} className="bg-gray-200 py-2 px-4 rounded mb-2">
           Reset to Default URL
         </button>
-        <button onClick={() => resetUrl(url)} className="bg-gray-200 py-2 px-4 rounded mb-2">
-          Reuse Current URL
-        </button>
       </div>
     </>
   );
