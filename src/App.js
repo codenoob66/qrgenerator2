@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { QRCodeSVG } from 'qrcode.react'; // Ensure to import the QRCodeSVG component
 import Navbar from './Navbar';
+import Section from './Section';
 
 function App() {
   const [url, setUrl] = useState("https://example.com");
@@ -60,6 +61,7 @@ function App() {
           Reset to Default URL
         </button>
       </div>
+      <Section />
     </>
   );
 }

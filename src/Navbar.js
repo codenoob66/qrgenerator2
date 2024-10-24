@@ -18,7 +18,7 @@ const Navbar = () => {
         {/* Hamburger Menu (Visible below 640px) */}
         <button
           onClick={() => setIsOpen(!isOpen)} // Toggle the mobile menu
-          className="block sm:hidden text-white focus:outline-none"
+          className="block sm:hidden text-white focus:outline-none mr-3"
         >
           <FontAwesomeIcon icon={faBars} size="lg" style={{ color: "#9a9ca2" }} />
         </button>
