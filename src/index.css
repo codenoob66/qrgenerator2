@@ -10,9 +10,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: auto; /* Change this line */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (max-width: 640px) {
+  /* Styles for screens smaller than or equal to 640px */
+  #mainApp {
+    margin-top: 50px;
+    }
+  }

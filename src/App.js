@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center mt-4"> {/* Added mt for spacing */}
+      <div id='mainApp' className="flex flex-col items-center justify-center mt-10"> {/* Added mt for spacing */}
         <h1 className="text-3xl font-bold mb-5">My QR Code</h1>
         <input
           type="text" 
