@@ -1,20 +1,18 @@
-import React, { useState, useCallback } from 'react';
-import { QRCodeSVG } from 'qrcode.react'; // Ensure to import the QRCodeSVG component
-import Navbar from './Navbar';
-import Section from './Section';
+import React, { useState, useCallback } from "react";
+import { QRCodeSVG } from "qrcode.react"; // Ensure to import the QRCodeSVG component
+import Navbar from "./Navbar";
+import Section from "./Section";
 
 function App() {
   const [url, setUrl] = useState("https://example.com");
   const [isValidUrl, setIsValidUrl] = useState(true);
 
   const isValidUrlCheck = useCallback((input) => {
-    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-      '((([a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\\.)+([a-z]{2,}|[a-z0-9-]{2,})|' +
-      'localhost|' +
-      '\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|' +
-      '\\[?[a-fA-F0-9]*:[a-fA-F0-9:]+\\]?)' +
-      '(\\:\\d+)?(\\/[-a-z0-9+&@#/%=~_|]*\\.[a-z0-9()\\-_.?,:&%#=~]*)?$', 'i');
-    return !!pattern.test(input);
+    try {
+      new URL(input);
+    } catch (error) {
+      return false;
+    }
   }, []);
 
   const handleInputChange = (event) => {
@@ -24,7 +22,8 @@ function App() {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(url)
+    navigator.clipboard
+      .writeText(url)
       .then(() => alert("URL copied to clipboard!"))
       .catch(() => alert("Failed to copy URL."));
   };
@@ -36,28 +35,41 @@ function App() {
   return (
     <>
       <Navbar />
-      <div id='mainApp' className="flex flex-col items-center justify-center mt-10"> {/* Added mt for spacing */}
+      <div
+        id="mainApp"
+        className="flex flex-col items-center justify-center mt-10"
+      >
+        {" "}
+        {/* Added mt for spacing */}
         <h1 className="text-3xl font-bold mb-5">My QR Code</h1>
         <input
-          type="text" 
+          type="text"
           className="p-2 mb-3 border border-gray-300 rounded-md w-80 border-teal-500"
-          value={url} 
-          onChange={handleInputChange} 
-          placeholder="Enter your website here" 
+          value={url}
+          onChange={handleInputChange}
+          placeholder="Enter your website here"
         />
-        {!isValidUrl && <p className="text-red-500 mb-2">Please enter a valid URL.</p>}
-        <QRCodeSVG 
-          value={url} 
-          size={256} 
-          bgColor="#ffffff" 
-          fgColor="#000000" 
-          level="H" 
-          className="mb-4" 
+        {!isValidUrl && (
+          <p className="text-red-500 mb-2">Please enter a valid URL.</p>
+        )}
+        <QRCodeSVG
+          value={url}
+          size={256}
+          bgColor="#ffffff"
+          fgColor="#000000"
+          level="H"
+          className="mb-4"
         />
-        <button onClick={copyToClipboard} className="bg-gray-200 py-2 px-4 rounded mb-2">
+        <button
+          onClick={copyToClipboard}
+          className="bg-gray-200 py-2 px-4 rounded mb-2"
+        >
           Copy URL
         </button>
-        <button onClick={() => resetUrl("https://new-url.com")} className="bg-gray-200 py-2 px-4 rounded mb-2">
+        <button
+          onClick={() => resetUrl("https://new-url.com")}
+          className="bg-gray-200 py-2 px-4 rounded mb-2"
+        >
           Reset to Default URL
         </button>
       </div>
